@@ -9,12 +9,12 @@ const Banner = () => {
         <div style={{
             background: `url(${ab})`,
             backgroundSize: 'cover'
-        }} class="hero min-h-screen">
-            <div class="hero-content flex-col lg:flex-row-reverse lg:px-12">
+        }} className="hero min-h-screen">
+            <div className="hero-content flex-col lg:flex-row-reverse lg:px-12">
                 <img src={all} className="max-w-lg w-full  rounded-lg shadow-2xl" alt='' />
                 <div>
-                    <h1 class="text-5xl font-bold">The Best Quality of Parts are Manufactured by Us</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 className="text-5xl font-bold">The Best Quality of Parts are Manufactured by Us</h1>
+                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     <PrimaryButton>Get Start</PrimaryButton>
                 </div>
             </div>
