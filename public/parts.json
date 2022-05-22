@@ -1,0 +1,29 @@
+[
+    {
+        "_id": 1,
+        "name": "Disk Break",
+        "img": "https://i.ibb.co/qBmGhsP/disk-Break-1.png",
+        "description": "We build each and every Disk Break thinking about your safety.",
+        "available": 24700,
+        "minimumOrder": 1000,
+        "price": 2500
+    },
+    {
+        "_id": 2,
+        "name": "Suspension",
+        "img": "https://i.ibb.co/Jznh30w/suspension-2.jpg",
+        "description": "You can't feel any disterbence while using our Suspension.",
+        "available": 22000,
+        "minimumOrder": 1000,
+        "price": 3500
+    },
+    {
+        "_id": 3,
+        "name": "Car Clutch",
+        "img": "https://i.ibb.co/vkSnjCG/clase.png",
+        "description": "We make every parts of your car carefully and focus on quality.",
+        "available": 25000,
+        "minimumOrder": 1000,
+        "price": 2700
+    }
+]
