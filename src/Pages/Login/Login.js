@@ -85,6 +85,8 @@ const Login = () => {
                                     }
                                 })}
                             />
+                            <span className="label-text-alt">Forget Password? <Link to='/resetpass' className='text-secondary btn btn-xs btn-link' >Reset Password</Link></span>
+
                             <label className="label">
                                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}

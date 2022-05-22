@@ -1,9 +1,9 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -14,23 +14,27 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [sendEmailVerification, sending, sendingError] = useSendEmailVerification(auth);
+    const navigate = useNavigate();
 
     let signInError;
 
-    if (loading || googleLoading || sending) {
+    if (loading || googleLoading || sending || updating) {
         return <Loading></Loading>
     }
-    if (error || googleError || sendingError) {
-        signInError = <p className='text-red-500 text-sm'>{error?.message || googleError?.message || sendingError?.message}</p>
+    if (error || googleError || sendingError || updateError) {
+        signInError = <p className='text-red-500 text-sm'>{error?.message || googleError?.message || sendingError?.message || updateError?.message}</p>
     }
     if (user || googleUser) {
         console.log(user || googleUser);
     }
 
-    const onSubmit = data => {
-        console.log(data)
-        createUserWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await sendEmailVerification();
+        await updateProfile({ displayName: data.name });
+        navigate('/');
     };
     return (
         <div className='flex justify-center items-center'>
