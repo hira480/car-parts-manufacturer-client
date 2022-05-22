@@ -8,7 +8,7 @@ const BusinessSummary = () => {
             backgroundSize: 'cover'
         }} className='text-center '>
             <h2 className='text-5xl font-bold text-center text-primary pt-5'>MILLIONS BUSINESS TRUST US</h2>
-            <h2 className='text-2xl text-center text-white font-medium mb-10'>TRY TO UNDERSTAND USER EXPECTATIONS</h2>
+            <h2 className='text-xl text-center text-white font-medium mb-10'>TRY TO UNDERSTAND USER EXPECTATIONS</h2>
             <div className="stats stats-vertical lg:stats-horizontal shadow mt-10 mb-14">
                 <div className="stat">
                     <div className="stat-figure text-primary">
