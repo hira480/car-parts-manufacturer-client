@@ -2,6 +2,7 @@ import React from 'react';
 // import autoParts from '../../assets/images/autoParts.png';
 import ab from '../../assets/images/ab.png';
 import all from '../../assets/images/all.jpg'
+import dark from '../../assets/images/dark.png';
 import PrimaryButton from '../Shared/PrimaryButton';
 
 const Banner = () => {

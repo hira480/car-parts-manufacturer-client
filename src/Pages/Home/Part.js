@@ -1,8 +1,12 @@
 import React from 'react';
-import PrimaryButton from '../Shared/PrimaryButton';
+import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { name, img, description, available, minimumOrder, price } = part;
+    const { _id, name, img, description, available, minimumOrder, price } = part;
+    const navigate = useNavigate();
+    const navigateToParchase = id => {
+        navigate(`/parchaseItem/${id}`);
+    }
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl">
             <figure><img src={img} alt="Shoes" /></figure>
@@ -13,7 +17,7 @@ const Part = ({ part }) => {
                 <p>Price:<span className='text-orange-500 font-semibold'> ${price}</span></p>
                 <p>{description}</p>
                 <div className="card-actions justify-end">
-                    <PrimaryButton>Purchase</PrimaryButton>
+                    <button onClick={() => navigateToParchase(_id)} className="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">Purchase</button>
                 </div>
             </div>
         </div>
