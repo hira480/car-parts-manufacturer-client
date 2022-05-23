@@ -10,6 +10,7 @@ import Navbar from './Pages/Shared/Navbar';
 import NotFound from './Pages/Shared/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RequireAuth from './Pages/Login/RequireAuth';
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
         <Route path='/resetpass' element={<ResetPassword></ResetPassword>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
-        <Route path='/parchaseItem/:productId' element={<Purchase></Purchase>}></Route>
+        <Route path='/parchaseItem/:productId' element={
+          <RequireAuth>
+            <Purchase></Purchase>
+          </RequireAuth>
+        }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer />
