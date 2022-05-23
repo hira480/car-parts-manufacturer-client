@@ -16,8 +16,10 @@ const Navbar = () => {
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to=''>About</Link></li>
         <li><Link to=''>About</Link></li>
-        <li><Link to=''>About</Link></li>
-        <li>{user ? <button onClick={logout} className="btn btn-ghost">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
+        {
+            user && <li><Link to='/dashboard'>Dashboard</Link></li>
+        }
+        <li>{user ? <Link to='' onClick={logout} className=" btn-ghost">Sign Out</Link> : <Link to='/login'>Login</Link>}</li>
     </>
     return (
         <div className="navbar bg-base-100">
