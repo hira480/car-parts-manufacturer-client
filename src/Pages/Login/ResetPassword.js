@@ -4,7 +4,7 @@ import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ResetPassword = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
@@ -50,6 +50,7 @@ const ResetPassword = () => {
                         </label>
                         <input className='btn w-full max-w-xs' type="submit" value='Send' />
                     </form>
+                    <p className='text-center text-sm'>Want to Login? <Link className='text-secondary' to='/login'>Please Login</Link></p>
                 </div>
             </div>
         </div>

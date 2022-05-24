@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Purchase from '../Purchase/Purchase';
 import Part from './Part';
 
 const Parts = () => {
