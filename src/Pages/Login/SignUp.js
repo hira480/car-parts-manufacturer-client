@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -15,6 +16,9 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token] = useToken(user || googleUser);
+
     const [sendEmailVerification, sending, sendingError] = useSendEmailVerification(auth);
     const navigate = useNavigate();
 
@@ -26,15 +30,15 @@ const SignUp = () => {
     if (error || googleError || sendingError || updateError) {
         signInError = <p className='text-red-500 text-sm'>{error?.message || googleError?.message || sendingError?.message || updateError?.message}</p>
     }
-    if (user || googleUser) {
-        console.log(user || googleUser);
+    if (token) {
+        navigate('/parchaseItem/:productId');
     }
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await sendEmailVerification();
         await updateProfile({ displayName: data.name });
-        navigate('/');
+
     };
     return (
         <div className='flex justify-center items-center'>
