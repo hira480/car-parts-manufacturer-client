@@ -3,7 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInW
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
@@ -23,6 +23,8 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     let signInError;
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     if (loading || googleLoading || sending || updating) {
         return <Loading></Loading>
@@ -31,7 +33,7 @@ const SignUp = () => {
         signInError = <p className='text-red-500 text-sm'>{error?.message || googleError?.message || sendingError?.message || updateError?.message}</p>
     }
     if (token) {
-        navigate('/parchaseItem/:productId');
+        navigate(from, { replace: true });
     }
 
     const onSubmit = async data => {
