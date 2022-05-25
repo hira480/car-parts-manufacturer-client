@@ -71,7 +71,7 @@ const Purchase = () => {
             {/* <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 mt-10 px-2 align-center justify-center lg:px-12 mb-12 "> */}
             <div className=" flex justify-around ">
 
-                <div className=" justify-center   w-96 bg-base-100 shadow-xl">
+                <div className=" justify-center w-96 bg-base-100 shadow-xl">
                     <figure><img src={img} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="text-3xl font-bold text-primary">{name}</h2>
@@ -91,7 +91,7 @@ const Purchase = () => {
 
                         <input type="text" name='name' disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
                         <input type="email" name='email' disabled value={user?.email || ''} className="input input-bordered w-full max-w-xs" />
-                        <input type="text" name='quantity' placeholder="Quantity" className="input input-bordered w-full max-w-xs" required />
+                        <input type="number" name='quantity' placeholder="Quantity" className="input input-bordered w-full max-w-xs" required />
                         <input type="text" name='phone' placeholder="Phone Number" className="input input-bordered w-full max-w-xs" required />
                         <input type="text" name='address' placeholder="Address" className="input input-bordered w-full max-w-xs" required />
                         <input type="submit" value="Place An Order" className="btn w-full max-w-xs" />

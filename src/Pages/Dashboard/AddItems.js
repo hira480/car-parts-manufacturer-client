@@ -64,16 +64,13 @@ const AddItems = () => {
     return (
         <div className='lg:px-12'>
             <h2 className='text-2xl font-semibold my-5'>Add New Items</h2>
-            <div class="card w-96  bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="text-2xl text-center font-bold">Add item</h2>
+            <div className="card w-96  bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="text-2xl text-center font-bold">Add item</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         {/* Input field for name */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
                             <input
                                 type="text"
                                 placeholder="Your Name"
@@ -91,7 +88,6 @@ const AddItems = () => {
                         </div>
                         {/* Input field for available amount */}
                         <div className="form-control w-full max-w-xs">
-
                             <input
                                 type="text"
                                 placeholder="Storage Quantity"
@@ -110,7 +106,6 @@ const AddItems = () => {
 
                         {/* Input field for Minimum order */}
                         <div className="form-control w-full max-w-xs">
-
                             <input
                                 type="text"
                                 placeholder="Minimum Order"
@@ -129,7 +124,6 @@ const AddItems = () => {
 
                         {/* Input field for Minimum order */}
                         <div className="form-control w-full max-w-xs">
-
                             <input
                                 type="text"
                                 placeholder="Price"
@@ -147,7 +141,6 @@ const AddItems = () => {
                         </div>
                         {/* Input field for Description */}
                         <div className="form-control w-full max-w-xs">
-
                             <input
                                 type="text"
                                 placeholder="Description"
@@ -166,10 +159,9 @@ const AddItems = () => {
 
                         {/* Image  */}
                         <div className="form-control w-full max-w-xs">
-
                             <input
                                 type="file"
-                                className="input input-bordered input-sm w-full max-w-xs"
+                                className="input "
                                 {...register("image", {
                                     required: {
                                         value: true,
@@ -182,7 +174,7 @@ const AddItems = () => {
                             </label>
                         </div>
 
-                        <input className='btn w-full max-w-xs' type="submit" value='Add New Item' />
+                        <input className='btn btn-sm w-full max-w-xs' type="submit" value='Add Item' />
                     </form>
 
                 </div>
