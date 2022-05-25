@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const AddItems = () => {
@@ -21,6 +22,37 @@ const AddItems = () => {
         })
             .then(res => res.json())
             .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    const newParts = {
+                        name: data.name,
+                        available: data.available,
+                        minimumOrder: data.minimumOrder,
+                        price: data.price,
+                        description: data.description,
+                        img: img
+                    }
+                    // send to database
+                    fetch('http://localhost:5000/part', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(newParts)
+                    })
+                        .then(res => res.json())
+                        .then(inserted => {
+                            console.log('NewParts', inserted);
+                            if (inserted.insertedId) {
+                                toast.success('New Parts Added Successfully');
+                                reset();
+                            }
+                            else {
+                                toast.error('Failed to add New Parts');
+                            }
+                        })
+                }
                 console.log('imgbb', result);
             })
     };
@@ -59,9 +91,7 @@ const AddItems = () => {
                         </div>
                         {/* Input field for available amount */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Available Amount</span>
-                            </label>
+
                             <input
                                 type="text"
                                 placeholder="Storage Quantity"
@@ -80,9 +110,7 @@ const AddItems = () => {
 
                         {/* Input field for Minimum order */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Minimum Order Quantity</span>
-                            </label>
+
                             <input
                                 type="text"
                                 placeholder="Minimum Order"
@@ -101,9 +129,7 @@ const AddItems = () => {
 
                         {/* Input field for Minimum order */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Price Per Unit</span>
-                            </label>
+
                             <input
                                 type="text"
                                 placeholder="Price"
@@ -121,9 +147,7 @@ const AddItems = () => {
                         </div>
                         {/* Input field for Description */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Price Per Unit</span>
-                            </label>
+
                             <input
                                 type="text"
                                 placeholder="Description"
@@ -142,9 +166,7 @@ const AddItems = () => {
 
                         {/* Image  */}
                         <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Photo</span>
-                            </label>
+
                             <input
                                 type="file"
                                 className="input input-bordered input-sm w-full max-w-xs"
