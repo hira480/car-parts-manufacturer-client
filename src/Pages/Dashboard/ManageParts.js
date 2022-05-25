@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import DeleteConfirm from './DeleteConfirm';
 import PartsRow from './PartsRow';
 
 const ManageParts = () => {
-    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/part', {
+    const [deletingPart, setDeletingPart] = useState(null);
+
+
+    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('https://whispering-mountain-34563.herokuapp.com/part', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -35,11 +39,17 @@ const ManageParts = () => {
                                 part={part}
                                 index={index}
                                 refetch={refetch}
+                                setDeletingPart={setDeletingPart}
                             ></PartsRow>)
                         }
                     </tbody>
                 </table>
             </div>
+            {deletingPart && <DeleteConfirm
+                deletingPart={deletingPart}
+                refetch={refetch}
+                setDeletingPart={setDeletingPart}
+            ></DeleteConfirm>}
         </div>
     );
 };

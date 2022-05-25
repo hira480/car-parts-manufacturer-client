@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import axios from "axios";
 import useParts from '../../hooks/useParts';
 import { toast } from 'react-toastify';
+import purches from '../../assets/images/purches.png';
 
 
 const Purchase = () => {
@@ -31,7 +32,7 @@ const Purchase = () => {
             orderQuantity
         }
 
-        fetch('http://localhost:5000/ordered', {
+        fetch('https://whispering-mountain-34563.herokuapp.com/ordered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +48,7 @@ const Purchase = () => {
                     ) {
                         const delivaredQuantity = parseInt(available) - orderQuantity;
                         const updatedQuantity = async () => {
-                            const url = `http://localhost:5000/part/${productId}`;
+                            const url = `https://whispering-mountain-34563.herokuapp.com/part/${productId}`;
                             const { data } = await axios.put(url, { delivaredQuantity });
                             if (data.acknowledged) {
                                 toast.success(`Order Placed Successfully for ${part.name}`);
@@ -67,11 +68,14 @@ const Purchase = () => {
     }
 
     return (
-        <div className='my-10 lg:px-12'>
+        <div style={{
+            background: `url(${purches})`,
+            backgroundSize: 'cover'
+        }} className='lg:px-12'>
             {/* <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 mt-10 px-2 align-center justify-center lg:px-12 mb-12 "> */}
-            <div className=" flex justify-around ">
+            <div className="hero-content py-10 flex-col lg:flex-row  ">
 
-                <div className=" justify-center w-96 bg-base-100 shadow-xl">
+                <div className="card justify-center w-96 bg-base-100 shadow-xl">
                     <figure><img src={img} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="text-3xl font-bold text-primary">{name}</h2>
@@ -86,7 +90,7 @@ const Purchase = () => {
                 <div className="card lg:ml-14 w-96 bg-base-100 shadow-xl">
                     <h2 className="text-center text-2xl font-bold mt-3">Purchase</h2>
 
-                    <form onSubmit={handelPurchase} className='grid grid-cols-1 gap-3 justify-items-center mt-4'>
+                    <form onSubmit={handelPurchase} className='grid grid-cols-1 gap-3 py-5 justify-items-center mt-4'>
                         <input type="text" disabled value={name} className="input input-bordered w-full max-w-xs" />
 
                         <input type="text" name='name' disabled value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" />
