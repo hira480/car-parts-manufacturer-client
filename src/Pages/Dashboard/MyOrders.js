@@ -1,38 +1,68 @@
-import React from 'react';
+import { signOut } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const MyOrders = () => {
+    const [orders, setOrders] = useState([]);
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:5000/ordered?client=${user.email}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => {
+                    console.log('res', res);
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setOrders(data);
+                })
+        }
+    }, [user, navigate]);
+
     return (
         <div className='lg:px-12'>
-            <h2 className='text-2xl font-semibold my-5'>My Orders</h2>
+            <h2 className='text-2xl font-semibold my-5'>My Orders {orders.length}</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Parts</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
+                        {
+                            orders.map((order, index) => <tr key={order._id}>
+                                <th>{index + 1}</th>
+                                <td>{order.clientName}</td>
+                                <td>{order.partsName}</td>
+                                <td>$ {order.price}</td>
+                                <td>{order.orderQuantity}</td>
+                                <td>
+                                    {(order.price && !order.paid) &&
+                                        <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link>}
+                                </td>
+
+                            </tr>)
+                        }
+
                     </tbody>
                 </table>
             </div>
