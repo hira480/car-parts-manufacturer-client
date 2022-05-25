@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const DeleteConfirm = ({ deletingPart, refetch, setDeletingPart }) => {
     const { name, _id } = deletingPart;
     const handelDelete = () => {
-        fetch(`https://whispering-mountain-34563.herokuapp.com/part/${_id}`, {
+        fetch(`http://localhost:5000/part/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

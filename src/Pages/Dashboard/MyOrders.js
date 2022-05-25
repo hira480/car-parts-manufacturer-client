@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://whispering-mountain-34563.herokuapp.com/ordered?client=${user.email}`, {
+            fetch(`http://localhost:5000/ordered?client=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -58,6 +58,8 @@ const MyOrders = () => {
                                 <td>
                                     {(order.price && !order.paid) &&
                                         <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link>}
+                                    {(order.price && order.paid) &&
+                                        <span className='text-success'>Paid</span>}
                                 </td>
 
                             </tr>)

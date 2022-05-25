@@ -32,7 +32,7 @@ const Purchase = () => {
             orderQuantity
         }
 
-        fetch('https://whispering-mountain-34563.herokuapp.com/ordered', {
+        fetch('http://localhost:5000/ordered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -48,7 +48,7 @@ const Purchase = () => {
                     ) {
                         const delivaredQuantity = parseInt(available) - orderQuantity;
                         const updatedQuantity = async () => {
-                            const url = `https://whispering-mountain-34563.herokuapp.com/part/${productId}`;
+                            const url = `http://localhost:5000/part/${productId}`;
                             const { data } = await axios.put(url, { delivaredQuantity });
                             if (data.acknowledged) {
                                 toast.success(`Order Placed Successfully for ${part.name}`);

@@ -8,7 +8,7 @@ const ManageParts = () => {
     const [deletingPart, setDeletingPart] = useState(null);
 
 
-    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('https://whispering-mountain-34563.herokuapp.com/part', {
+    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/part', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
