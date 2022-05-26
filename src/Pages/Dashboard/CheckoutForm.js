@@ -6,9 +6,11 @@ const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [transectionId, setTransectionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { price } = order;
+    const { price, clientName, client } = order;
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -45,6 +47,31 @@ const CheckoutForm = ({ order }) => {
         });
 
         setCardError(error?.message || '');
+        setSuccess('');
+
+        // payment confirm
+        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: clientName,
+                        email: client
+                    },
+                },
+            },
+        );
+
+        if (intentError) {
+            setCardError(intentError?.message);
+        }
+        else {
+            setCardError('');
+            setTransectionId(paymentIntent.id);
+            console.log(paymentIntent);
+            setSuccess('Congratulations!! Your payment is Complete')
+        }
 
     }
 
@@ -73,6 +100,12 @@ const CheckoutForm = ({ order }) => {
             </form>
             {
                 cardError && <p className='text-red-500'>{cardError}</p>
+            }
+            {
+                success && <div className='text-green-500'>
+                    <p>{success}</p>
+                    <p>Your Transection Id : <span className='text-orange-500 font-bold'>{transectionId}</span></p>
+                </div>
             }
         </>
     );
