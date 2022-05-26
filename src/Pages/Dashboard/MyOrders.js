@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/ordered?client=${user.email}`, {
+            fetch(`https://whispering-mountain-34563.herokuapp.com/ordered?client=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -31,6 +31,26 @@ const MyOrders = () => {
                 })
         }
     }, [user, navigate]);
+
+    const handelDelete = id => {
+        const proceed = window.confirm('It will also delete from Database. Are you sure you want to cancel your order?');
+        if (proceed) {
+            const url = `http://localhost:5000/ordered/${id}`;
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remaining = orders.filter(order => order._id !== id);
+                    setOrders(remaining);
+                })
+        }
+    }
 
     return (
         <div className='lg:px-12'>
@@ -56,8 +76,12 @@ const MyOrders = () => {
                                 <td>$ {order.price}</td>
                                 <td>{order.orderQuantity}</td>
                                 <td>
-                                    {(order.price && !order.paid) &&
-                                        <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link>}
+                                    {(order.price && !order.paid) && <>
+                                        <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link>
+
+                                        <button onClick={() => handelDelete(order._id)} className='ml-2 btn btn-xs btn-error'>Cancel</button>
+                                    </>}
+
                                     {(order.price && order.paid) &&
                                         <span className='text-success'>Paid</span>}
                                 </td>

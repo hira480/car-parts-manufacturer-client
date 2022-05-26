@@ -7,13 +7,14 @@ const CheckoutForm = ({ order }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
+    const [processing, setProcessing] = useState(false);
     const [transectionId, setTransectionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { price, clientName, client } = order;
+    const { _id, price, clientName, client } = order;
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://whispering-mountain-34563.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -48,6 +49,7 @@ const CheckoutForm = ({ order }) => {
 
         setCardError(error?.message || '');
         setSuccess('');
+        setProcessing(true);
 
         // payment confirm
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
@@ -65,12 +67,32 @@ const CheckoutForm = ({ order }) => {
 
         if (intentError) {
             setCardError(intentError?.message);
+            setProcessing(false);
         }
         else {
             setCardError('');
             setTransectionId(paymentIntent.id);
             console.log(paymentIntent);
-            setSuccess('Congratulations!! Your payment is Complete')
+            setSuccess('Congratulations!! Your payment is Complete');
+
+            // 
+            const payment = {
+                order: _id,
+                transectionId: paymentIntent.id
+            }
+            fetch(`http://localhost:5000/ordered/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+
+            }).then(res => res.json())
+                .then(data => {
+                    setProcessing(false);
+                    console.log(data);
+                })
         }
 
     }

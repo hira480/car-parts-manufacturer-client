@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L1DwyJAH8q8uEVYs1gJMDYrFovUV3aBm6L9C
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/ordered/${id}`;
+    const url = `https://whispering-mountain-34563.herokuapp.com/ordered/${id}`;
 
     const { data: order, isLoading } = useQuery(['ordered', id], () => fetch(url, {
         method: 'GET',

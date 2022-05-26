@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading';
 const AddItems = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const { data, isLoading } = useQuery('parts', () => fetch('http://localhost:5000/part').then(res => res.json()));
+    const { data, isLoading } = useQuery('parts', () => fetch('https://whispering-mountain-34563.herokuapp.com/part').then(res => res.json()));
 
     const imageStorageKey = '3de7ce9c3634018bf899a6bbaf973da5';
 
@@ -33,7 +33,7 @@ const AddItems = () => {
                         img: img
                     }
                     // send to database
-                    fetch('http://localhost:5000/part', {
+                    fetch('https://whispering-mountain-34563.herokuapp.com/part', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
