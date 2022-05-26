@@ -35,7 +35,7 @@ const MyOrders = () => {
     const handelDelete = id => {
         const proceed = window.confirm('It will also delete from Database. Are you sure you want to cancel your order?');
         if (proceed) {
-            const url = `http://localhost:5000/ordered/${id}`;
+            const url = `https://whispering-mountain-34563.herokuapp.com/ordered/${id}`;
             fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -55,8 +55,8 @@ const MyOrders = () => {
     return (
         <div className='lg:px-12'>
             <h2 className='text-2xl font-semibold my-5'>My Orders {orders.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -82,8 +82,11 @@ const MyOrders = () => {
                                         <button onClick={() => handelDelete(order._id)} className='ml-2 btn btn-xs btn-error'>Cancel</button>
                                     </>}
 
-                                    {(order.price && order.paid) &&
-                                        <span className='text-success'>Paid</span>}
+                                    {(order.price && order.paid) && <>
+                                        <span className='text-success'>Paid</span>
+                                        <p>Transaction Id: <span className='text-success'>{order.transectionId}</span></p>
+                                    </>
+                                    }
                                 </td>
 
                             </tr>)

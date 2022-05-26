@@ -29,8 +29,8 @@ const Blog = () => {
                 </div>
                 <div className="card mb-10 bg-base-100 shadow-xl">
                     <div className="card-body">
-                        <h2 className="card-title">Card title!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                        <h2 className="card-title"> What is a unit test? Why should write unit tests?</h2>
+                        <p>Unit test are automated test written and run by software developers. basically unit testing is the measurement of the performence of a website. How data loded, dependency, performence and so many things are included to unit testing. Depend on unit tasting result developers optimize the perforence of a website. Unit test is so important to analyse the performence. </p>
                     </div>
                 </div>
             </div>

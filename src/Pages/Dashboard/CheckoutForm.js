@@ -80,7 +80,7 @@ const CheckoutForm = ({ order }) => {
                 order: _id,
                 transectionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/ordered/${_id}`, {
+            fetch(`https://whispering-mountain-34563.herokuapp.com/ordered/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
