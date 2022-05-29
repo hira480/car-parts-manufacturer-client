@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Review from './Review';
 
-const Reviews = () => {
+const Reviews = (data) => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('reviews.json')
+        fetch('https://whispering-mountain-34563.herokuapp.com/review')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -16,7 +16,7 @@ const Reviews = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-2'>
                 {
-                    reviews.slice(0, 4).map(review => <Review
+                    reviews.slice(-4).map(review => <Review
                         key={review._id}
                         review={review}
                     ></Review>)

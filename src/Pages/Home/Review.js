@@ -1,12 +1,13 @@
 import React from 'react';
 
 const Review = ({ review }) => {
-    const { name, reviews } = review;
+    const { rating, name, reviewText } = review;
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl">
             <div className="card-body ">
                 <h2 className="card-title">{name}</h2>
-                <p>{reviews}</p>
+                <p>{reviewText}</p>
+                <p style={{ color: "#FBBD23" }} className='font-bold'>Rating: {rating}</p>
             </div>
         </div>
     );

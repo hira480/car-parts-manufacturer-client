@@ -21,10 +21,10 @@ const DeleteConfirm = ({ deletingPart, refetch, setDeletingPart }) => {
             })
     }
     return (
-        <div >
-            <input type="checkbox" id="delete-confirm-modal" className="modal-toggle" />
-            <div className="modal">
-                <div className="modal-box">
+        <div className=''>
+            <input type="checkbox" id="delete-confirm-modal" className="modal-toggle  " />
+            <div className="modal modal-bottom sm:modal-middle bg-transparent">
+                <div className="modal-box ">
                     <h3 className="font-bold text-lg">Are you sure you want to delete {name} ?</h3>
                     <p className="py-4">If you delete {name} it will delete from home page and also delete from database.</p>
                     <div className="modal-action">
