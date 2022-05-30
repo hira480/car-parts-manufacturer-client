@@ -28,6 +28,7 @@ const AddReview = () => {
             .then(res => res.json())
             .then(data => {
                 if (data) {
+
                     toast.success('Review Added Successfully');
                 }
                 else {

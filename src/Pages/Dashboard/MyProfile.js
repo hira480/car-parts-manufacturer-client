@@ -33,7 +33,7 @@ const MyProfile = () => {
                             <button className="btn w-full mt-2 max-w-xs">Update</button>
                         </div>
                         <div>
-
+                            <h2>This is side bar</h2>
                         </div>
                     </div>
                 </div>

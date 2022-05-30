@@ -9,7 +9,7 @@ const AddItems = () => {
 
     const { data, isLoading } = useQuery('parts', () => fetch('https://whispering-mountain-34563.herokuapp.com/part').then(res => res.json()));
 
-    const imageStorageKey = '3de7ce9c3634018bf899a6bbaf973da5';
+    const imageStorageKey = process.env.REACT_APP_imageStorageKey;
 
     const onSubmit = async data => {
         const image = data.image[0];
