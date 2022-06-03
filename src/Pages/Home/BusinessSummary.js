@@ -4,10 +4,11 @@ import businessBg from '../../assets/images/businessBg.png';
 const BusinessSummary = () => {
     return (
         <div style={{
-            background: `url(${businessBg})`,
-            backgroundSize: 'cover'
-        }} className='text-center '>
-            <h2 className='text-5xl font-bold text-center text-primary pt-5'>MILLIONS BUSINESS TRUST US</h2>
+            // background: `url(${businessBg})`,
+            backgroundImage: `url(${businessBg})`,
+            // backgroundSize: 'cover'
+        }} className='text-center bg-scroll lg:mt-20'>
+            <h2 className='text-4xl lg:text-5xl font-bold text-center text-primary pt-5'>MILLIONS BUSINESS TRUST US</h2>
             <h2 className='text-xl text-center text-white font-medium mt-2 mb-8'>TRY TO UNDERSTAND USER EXPECTATIONS</h2>
             <div className="stats stats-vertical lg:stats-horizontal shadow mt-10 mb-14">
                 <div className="stat">

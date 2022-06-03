@@ -11,9 +11,9 @@ const Parts = () => {
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-4xl font-semibold mt-5'>Parts We <span className='text-primary'>Manufact</span></h2>
+                <h2 className='text-4xl font-semibold mt-10'>Parts We <span className='text-primary'>Manufact</span></h2>
             </div>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 px-2 lg:px-12 mb-12'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 px-3 lg:px-12 mb-12'>
                 {
                     parts.slice(-3).map(part => <Part
                         key={part._id}

@@ -9,7 +9,7 @@ const Reviews = (data) => {
             .then(data => setReviews(data))
     }, [])
     return (
-        <div className='px-2 lg:px-12 my-8'>
+        <div className='px-2 lg:px-12 mt-8 mb-10'>
             <div>
                 <h4 className="text-xl text-primary font-bold">Testimonials</h4>
                 <h2 className='text-3xl'>What Our Clients Say</h2>
