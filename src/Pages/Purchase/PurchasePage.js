@@ -11,7 +11,7 @@ const PurchasePage = () => {
     const { productId } = useParams();
     const [user, loading] = useAuthState(auth);
 
-    const { data: part, isLoading, refetch } = useQuery('ordered', () =>
+    const { data: part, isLoading, refetch } = useQuery('ordar', () =>
         fetch(`https://whispering-mountain-34563.herokuapp.com/part/${productId}`).then(res => res.json())
     );
     // console.log(part)
@@ -21,10 +21,11 @@ const PurchasePage = () => {
     const onSubmit = (data) => {
         if (data) {
             const ordered = { ...data, price: part.price };
+            console.log(ordered);
             fetch('https://whispering-mountain-34563.herokuapp.com/ordered', {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
                 },
                 body: JSON.stringify(ordered),
             })
@@ -39,6 +40,7 @@ const PurchasePage = () => {
         } else {
             toast.error('Order failed');
         }
+
     };
     if (loading || isLoading) {
         return <Loading></Loading>

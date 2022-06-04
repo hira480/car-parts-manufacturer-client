@@ -37,8 +37,8 @@ function App() {
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/parchaseItem/:productId' element={
           <RequireAuth>
-            <Purchase></Purchase>
-            {/* <PurchasePage></PurchasePage> */}
+            {/* <Purchase></Purchase> */}
+            <PurchasePage></PurchasePage>
           </RequireAuth>
         }></Route>
         <Route path='/dashboard' element={

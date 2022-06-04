@@ -3,15 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
-    const [user] = useAuthState(auth);
+    console.log(orders);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
-            fetch(`https://whispering-mountain-34563.herokuapp.com/ordered?client=${user.email}`, {
+            fetch(`https://whispering-mountain-34563.herokuapp.com/ordered?email=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -51,6 +53,9 @@ const MyOrders = () => {
                 })
         }
     }
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='lg:px-12'>
@@ -72,7 +77,7 @@ const MyOrders = () => {
                             orders.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order.clientName}</td>
-                                <td>{order.partsName}</td>
+                                <td>{order.name}</td>
                                 <td>$ {order.price}</td>
                                 <td>{order.orderQuantity}</td>
                                 <td>

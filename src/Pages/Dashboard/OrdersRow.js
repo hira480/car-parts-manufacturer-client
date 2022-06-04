@@ -25,13 +25,12 @@ const OrdersRow = ({ orders, index, refetch }) => {
             <td>
                 {
                     !paid && <p className='text-red-500 font-semibold'>Unpaid</p>
-                }</td>
-            {/* {
-                { paid: true } && <button className="btn btn-xs">Ship</button>
-            } */}
+                }
+                {
+                    paid && <button className="btn btn-xs">Ship</button>
+                }
+            </td>
 
-            {/* <td>{role !== 'admin' && <button onClick={makeAdmin} className="btn btn-xs">Make Admin</button>}</td>
-            <td><button className="btn btn-xs">Remove User</button></td> */}
         </tr>
     );
 };
