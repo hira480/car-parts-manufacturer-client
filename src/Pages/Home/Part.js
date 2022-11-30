@@ -18,8 +18,6 @@ const Part = ({ part }) => {
                 <p>{description}</p>
                 <div className="card-actions justify-end">
                     <button onClick={() => navigateToParchase(_id)} className="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">Purchase</button>
-
-                    {/* <Link to={`parchaseItem/${_id}`}><button className="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">Purchase</button></Link> */}
                 </div>
             </div>
         </div>

@@ -24,7 +24,12 @@ const OrdersRow = ({ orders, index, refetch }) => {
             <td>$ {price}</td>
             <td>
                 {
-                    !paid && <p className='text-red-500 font-semibold'>Unpaid</p>
+                    !paid &&
+
+                    <div className='flex'>
+                        <p className='text-red-500 font-semibold mr-1'>Unpaid</p>
+                        <button className="btn btn-xs">X</button>
+                    </div>
                 }
                 {
                     paid && <button className="btn btn-xs">Ship</button>

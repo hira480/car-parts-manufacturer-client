@@ -15,6 +15,8 @@ const WhyUs = () => {
                         Our customer feedbact is totally outstanding. There feedbacks motivate us to increase our production. To fulfill our honourable customers demand we are started manufacturing styrings. It wil change your using experiences. Our architectural desine will make  make our customers satisfyed.</p>
                     <PrimaryButton>Get Started</PrimaryButton>
                 </div>
+
+
             </div>
         </div>
     );

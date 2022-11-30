@@ -23,6 +23,9 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import PurchasePage from './Pages/Purchase/PurchasePage';
 import MyPortfolio from './Pages/Portfolio/MyPortfolio';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
+import About from './Pages/About/About';
+import Contact from './Pages/Contact/Contact';
+import Services from './Pages/Services/Services';
 
 function App() {
   return (
@@ -32,12 +35,13 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
-        <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/resetpass' element={<ResetPassword></ResetPassword>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
+        {/* <Route path='/services' element={<Services></Services>}></Route> */}
+        {/* <Route path='/contact' element={<Contact></Contact>}></Route> */}
         <Route path='/parchaseItem/:productId' element={
           <RequireAuth>
-            {/* <Purchase></Purchase> */}
             <PurchasePage></PurchasePage>
           </RequireAuth>
         }></Route>
